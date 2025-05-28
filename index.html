@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sora Agent v1</title>
-  </head>
-  <body>
-    <h1>Talk to Sora</h1>
-    <input type="text" id="userInput" placeholder="Ask something...">
-    <button onclick="sendToAgent()">Send</button>
-    <p id="response"></p>
+<head>
+  <title>Sora Agent v1</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; }
+    input { padding: 10px; width: 300px; }
+    button { padding: 10px 20px; margin-left: 10px; }
+    #response { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Talk to Sora 👩‍🚀</h1>
+  <input type="text" id="userInput" placeholder="Ask something..." />
+  <button onclick="sendToAgent()">Send</button>
+  <p id="response"></p>
 
-    <script>
-      async function sendToAgent() {
-        const message = document.getElementById("userInput").value; 
-
-        const res = await fetch("http://localhost:8000/ask-agent", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ message }),
-        });
-
-        const data = await res.json();
-        document.getElementById("response").innerText = "Agent: " + data.reply; 
-      }
-    </script>
-  </body>
+  <script>
+    async function sendToAgent() {
+      const message = document.getElementById("userInput").value;
+      const res = await fetch("http://localhost:8000/ask-agent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = "🧠 Agent: " + data.reply;
+    }
+  </script>
+</body>
 </html>
